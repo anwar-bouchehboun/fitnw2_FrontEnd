@@ -2,9 +2,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+
 function MyHeader() {
   const navigate = useNavigate();
   const [navbar, setNavbar] = useState(false);
+
   return (
     <nav className="w-full bg-[#7A3E3E] shadow">
       <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
@@ -12,7 +14,7 @@ function MyHeader() {
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
             <a href="">
               <h2 className="text-2xl font-bold text-stone-200">
-                FIT<strong className="font-semibold text-red-300 ">NÖW</strong>
+                FIT<strong className="font-semibold text-red-300">NÖW</strong>
               </h2>
             </a>
             <div className="md:hidden">
@@ -61,11 +63,14 @@ function MyHeader() {
           >
             <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
               <li className="text-gray-100 hover:text-blue-600">
-                <Link href="/">Home</Link>
+                <Link to="/home">Home</Link>
+              </li>
+              <li className="text-gray-100 hover:text-blue-600">
+                <Link to="/progress">Progress</Link>
               </li>
               <li className="text-gray-100 hover:text-blue-600">
                 <button
-                  className=" btn"
+                  className="btn"
                   onClick={() => {
                     Cookies.remove("token");
                     navigate("/");

@@ -2,15 +2,16 @@ import  { useEffect, useState } from 'react';
 import { useParams ,useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import Swal from 'sweetalert2';
 
 function Edit() {
     const navigate = useNavigate();
     // return an object like { id: "123" }   would extract the value "123"
     const { id } = useParams();
     const [formData, setFormData] = useState({
-        weight:null, 
-        measurements: null, 
-        performance: null 
+        weight:'', 
+        measurements: '', 
+        performance: '' 
     });
 
     useEffect(() => {
@@ -26,7 +27,7 @@ function Edit() {
            
                 setFormData({
                     weight: response.data.progress.weight ,
-                    measurements: response.data.progress.weight ,
+                    measurements: response.data.progress.measurements ,
                     performance: response.data.progress.performance 
                 });
             } catch (err) {
@@ -56,6 +57,14 @@ function Edit() {
             navigate('/home');
         } catch (err) {
             console.log('error', err);
+            if (err.response && err.response.data && err.response.data.errors) {
+                const errors = Object.values(err.response.data.errors).join("<br>");
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Erreur de validation',
+                  html: errors,
+                });
+              }
         }
         
     };

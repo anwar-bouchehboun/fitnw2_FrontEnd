@@ -3,6 +3,7 @@ import MyHeader from "./nav/MyHeader";
 import { useNavigate, NavLink } from "react-router-dom";
 import axios from "axios";
 import Cookies from 'js-cookie';
+import Swal from 'sweetalert2';
 
 // import { data } from 'autoprefixer';
 
@@ -39,26 +40,51 @@ const Home = () => {
   useEffect(() => {
     fetchProgress();
   }, [navigate]);
+// delete 
+const handleDeleteConfirmation = (id) => {
+    Swal.fire({
+      title: 'Êtes-vous sûr?',
+      text: "Vous ne pourrez pas récupérer cet élément!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Oui, supprimer!',
+      cancelButtonText: 'Annuler'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        handleDelete(id);
+      }
+    });
+  };
+  
   const handleDelete = async (id) => {
     try {
       const token = Cookies.get("token");
-
       await axios.delete(`http://127.0.0.1:8000/api/progress/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      const newProgress = userProgress.filter((item) => {
-        console.log("ok", item.id);
-        return item.id !== id;
-      });
+      const newProgress = userProgress.filter((item) => item.id !== id);
       setUserProgress(newProgress);
+      Swal.fire({
+        icon: 'success',
+        title: 'Supprimé!',
+        text: 'Votre élément a été supprimé avec succès.'
+      });
     } catch (error) {
-      // Handle error
-      console.error("Error:", error);
+      console.error("Erreur:", error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Erreur',
+        text: 'Une erreur s\'est produite lors de la suppression. Veuillez réessayer.'
+      });
     }
   };
 
+  
+// status
   const updateStatus = async (id) => {
     try {
       const token = Cookies.get("token");
@@ -149,7 +175,7 @@ const Home = () => {
                           </NavLink>
                           <button
                             className="font-medium text-red-700 "
-                            onClick={() => handleDelete(user.id)}
+                            onClick={() => handleDeleteConfirmation(user.id)}
                           >
                             Delete
                           </button>
