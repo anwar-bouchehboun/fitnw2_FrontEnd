@@ -117,7 +117,7 @@ const Regsiter = () =>{
                                             </div>
                                             <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                                     Don’t have an account yet?{" "}
-                                    <Link to="/login"  className="font-medium text-primary-600 hover:underline dark:text-primary-500">
+                                    <Link to="/"  className="font-medium text-primary-600 hover:underline dark:text-primary-500">
                                       Login
                                     </Link>
                                 </p>

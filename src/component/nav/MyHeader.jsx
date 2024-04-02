@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link }  from 'react-router-dom'
-
+import { useNavigate } from "react-router-dom";
 function MyHeader() {
+    const navigate = useNavigate();
     const [navbar, setNavbar] = useState(false);
   return (
     <nav className="w-full bg-[#7A3E3E] shadow">
@@ -60,7 +61,12 @@ function MyHeader() {
                         <Link href="/">Home</Link>
                     </li>
                     <li className="text-gray-100 hover:text-blue-600">
-                        <Link >LogOut</Link>
+                    <button className=" btn" onClick={()=> {
+                        localStorage.removeItem("token"); 
+                        navigate("/")}
+                    }>
+                        Logout
+                    </button>
                     </li>
                   
                 </ul>
