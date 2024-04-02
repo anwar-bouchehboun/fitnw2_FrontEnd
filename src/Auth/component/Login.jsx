@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import { Link }  from 'react-router-dom'
 // import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import axios from 'axios';
@@ -53,7 +53,7 @@ function Login() {
                             </h1>
                             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                                 <div>
-                                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                    <label  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                         email
                                     </label>
                                     <input
@@ -68,7 +68,7 @@ function Login() {
                                     />
                                 </div>
                                 <div>
-                                    <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                    <label  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                         Password
                                     </label>
                                     <input
@@ -90,9 +90,9 @@ function Login() {
                                 </button>
                                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                                     Don’t have an account yet?{" "}
-                                    <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500">
-                                        Sign up
-                                    </a>
+                                    <Link to="/register"  className="font-medium text-primary-600 hover:underline dark:text-primary-500">
+                                       Sign Up
+                                    </Link>
                                 </p>
                             </form>
                         </div>

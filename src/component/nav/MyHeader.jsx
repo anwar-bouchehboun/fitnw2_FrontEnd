@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link }  from 'react-router-dom'
 
 function MyHeader() {
     const [navbar, setNavbar] = useState(false);
@@ -7,7 +8,7 @@ function MyHeader() {
     <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
         <div>
             <div className="flex items-center justify-between py-3 md:py-5 md:block">
-                <a href="javascript:void(0)">
+                <a href="">
                     <h2 className="text-2xl font-bold text-stone-200">FIT<strong className="font-semibold text-red-300 ">NÖW</strong></h2>
                 </a>
                 <div className="md:hidden">
@@ -56,17 +57,12 @@ function MyHeader() {
             >
                 <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
                     <li className="text-gray-100 hover:text-blue-600">
-                        <a href="javascript:void(0)">Home</a>
+                        <Link href="/">Home</Link>
                     </li>
                     <li className="text-gray-100 hover:text-blue-600">
-                        <a href="javascript:void(0)">Blog</a>
+                        <Link >LogOut</Link>
                     </li>
-                    <li className="text-gray-100 hover:text-blue-600">
-                        <a href="javascript:void(0)">About US</a>
-                    </li>
-                    <li className="text-gray-100 hover:text-blue-600">
-                        <a href="javascript:void(0)">Contact US</a>
-                    </li>
+                  
                 </ul>
             </div>
         </div>

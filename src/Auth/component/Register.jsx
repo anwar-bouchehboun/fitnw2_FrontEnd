@@ -1,4 +1,6 @@
 import  { useState } from 'react';
+import { Link }  from 'react-router-dom'
+
 // import List from './List';
 import axios from 'axios';
 
@@ -113,6 +115,12 @@ const Regsiter = () =>{
                                                    Register
                                                 </button>
                                             </div>
+                                            <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                                    Don’t have an account yet?{" "}
+                                    <Link to="/login"  className="font-medium text-primary-600 hover:underline dark:text-primary-500">
+                                      Login
+                                    </Link>
+                                </p>
                                         </div>
                                     </form>
                                 </div>
