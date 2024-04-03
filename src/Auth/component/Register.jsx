@@ -1,5 +1,7 @@
 import  { useState } from 'react';
 import { Link }  from 'react-router-dom'
+import SingIn from "./Login";
+import Swal from 'sweetalert2';
 
 // import List from './List';
 import axios from 'axios';
@@ -25,15 +27,21 @@ const Regsiter = () =>{
     const onSubmitChange = async (e) => {
         e.preventDefault();
         try {
-            const responce= await axios.post("http://127.0.0.1:8000/api/addnew", userField);
-            console.log(responce)
+            const responce= await axios.post("http://127.0.0.1:8000/api/register", userField);
+            console.log(responce);
+            Swal.fire({
+                icon: 'success',
+                title: 'Inscription réussie!',
+                text: 'Vous avez été inscrit avec succès.'
+            });
             setLoading(true);
         } catch (err) {
             console.log("Something Wrong");
         }
     }
     if(loading){
-        return <Regsiter/>
+        return <SingIn/>
+   
     }
  
     return (

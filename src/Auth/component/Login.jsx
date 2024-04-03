@@ -25,10 +25,12 @@ function Login() {
              console.log('Response:', response.data); 
         
            const token = response.data.access_token; 
-            console.log('Token:', token); 
+            // console.log('Token:', token); 
             
             Cookies.set("token", token, { expires: 7 });       
-                  console.log('Login successful!', token);
+                //   console.log('Login successful!', token);
+                //   console.log(response.data);
+                  Cookies.set("userName", name, { expires: 7 });
              navigate("/home");
         } catch (error) {
             console.error('Error during login:', error.message);
