@@ -1,13 +1,21 @@
-import  { useState } from 'react';
-import { Link }  from 'react-router-dom'
+import  { useState, useEffect } from 'react'
+import { Link ,useNavigate  } from 'react-router-dom'
 import SingIn from "./Login";
 import Swal from 'sweetalert2';
+import Cookies from 'js-cookie';
 
 // import List from './List';
 import axios from 'axios';
 
 
 const Regsiter = () =>{
+    const navigate = useNavigate();
+    useEffect(() => {
+        const token = Cookies.get("token");
+       if (token) {
+         navigate("/home" );
+       }
+     }, [navigate]);
     const [userField, setUserField] = useState({
         name: "",
         email: "",
@@ -43,6 +51,7 @@ const Regsiter = () =>{
         return <SingIn/>
    
     }
+
  
     return (
         <div>

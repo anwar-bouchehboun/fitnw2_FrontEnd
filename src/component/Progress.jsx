@@ -1,14 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 import MyHeader from "./nav/MyHeader";
-import Swal from 'sweetalert2';
-
+import Swal from "sweetalert2";
 
 function Progress() {
   const navigate = useNavigate();
-
+  const token = Cookies.get("token");
   const [formData, setFormData] = useState({
     weight: "",
     measurements: "",
@@ -16,16 +15,16 @@ function Progress() {
   });
 
   const InsertProgress = async (e) => {
-    e.preventDefault(); // Prevent the default form submission behavior
+    e.preventDefault();
     try {
-      const token = Cookies.get("token");
+   
       if (!token) {
         navigate("/");
         return;
       }
       const response = await axios.post(
         "http://127.0.0.1:8000/api/progress",
-        formData, 
+        formData,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -40,23 +39,28 @@ function Progress() {
         performance: "",
       });
       Swal.fire({
-        icon: 'success',
-        title: 'Succès',
-        text: 'Votre progrès a été enregistré avec succès.',
+        icon: "success",
+        title: "Succès",
+        text: "Votre progrès a été enregistré avec succès.",
       });
     } catch (err) {
       console.log("error:", err);
       if (err.response && err.response.data && err.response.data.errors) {
         const errors = Object.values(err.response.data.errors).join("<br>");
         Swal.fire({
-          icon: 'error',
-          title: 'Erreur de validation',
+          icon: "error",
+          title: "Erreur de validation",
           html: errors,
         });
       }
     }
   };
-
+  useEffect(() => {
+    // const token = Cookies.get("token");
+    if (!token) {
+      navigate("/");
+    }
+  }, [navigate]);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({

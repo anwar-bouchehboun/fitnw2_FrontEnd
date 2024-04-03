@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import  { useState,useEffect } from 'react';
 import { Link ,useNavigate  } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import axios from 'axios';
@@ -36,7 +36,12 @@ function Login() {
             console.error('Error during login:', error.message);
         }
     };
-
+    useEffect(() => {
+         const token = Cookies.get("token");
+        if (token) {
+          navigate("/home" );
+        }
+      }, [navigate]);
     return (
         <div>
             <section className="pt-2 bg-teal-300">
