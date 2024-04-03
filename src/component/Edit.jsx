@@ -3,6 +3,7 @@ import { useParams ,useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import Swal from 'sweetalert2';
+// import { ToastContainer, toast } from 'react-toastify';
 
 function Edit() {
     const navigate = useNavigate();
@@ -54,6 +55,8 @@ function Edit() {
                     Authorization: `Bearer ${token}`,
                 },
             });
+            // toast.success("success ,Prgress Update ")
+          
             navigate('/home');
         } catch (err) {
             console.log('error', err);
@@ -70,6 +73,7 @@ function Edit() {
     };
 
     return (
+        <>
         <div className="relative flex flex-col justify-center min-h-screen mx-4 overflow-hidden">
             <div className="w-full p-6 m-auto bg-white rounded-md shadow-xl shadow-rose-600/40 ring-2 ring-indigo-600 lg:max-w-xl">
                 <h1 className="text-3xl font-semibold text-center text-indigo-700 underline uppercase decoration-wavy">
@@ -114,6 +118,7 @@ function Edit() {
                 </form>
             </div>
         </div>
+        </>
     );
 }
 

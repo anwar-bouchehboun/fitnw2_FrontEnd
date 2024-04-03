@@ -22,11 +22,11 @@ function Login() {
 
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/login', formData);
-             console.log('Response:', response.data); 
+             console.log('Response:', response.data.user.name); 
         
            const token = response.data.access_token; 
             // console.log('Token:', token); 
-            
+            const name =response.data.user.name;
             Cookies.set("token", token, { expires: 7 });       
                 //   console.log('Login successful!', token);
                 //   console.log(response.data);

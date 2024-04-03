@@ -66,9 +66,6 @@ function MyHeader() {
                 <Link to="/home">Home</Link>
               </li>
               <li className="text-gray-100 hover:text-blue-600">
-                <Link to="/progress">Progress</Link>
-              </li>
-              <li className="text-gray-100 hover:text-blue-600">
                 <button
                   className="btn"
                   onClick={() => {
