@@ -45,6 +45,14 @@ const Regsiter = () =>{
             setLoading(true);
         } catch (err) {
             console.log("Something Wrong");
+            if (err.response && err.response.data && err.response.data.errors) {
+                const errors = Object.values(err.response.data.errors).join("<br>");
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Erreur de validation',
+                  html: errors,
+                });
+              }
         }
     }
     if(loading){
